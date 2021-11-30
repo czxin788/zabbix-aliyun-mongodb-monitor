@@ -29,5 +29,5 @@ UserParameter=check.aliyun.mongodb[*],python /etc/zabbix/scripts/check_aliyun_mo
 重启zabbix-agent
 zabbix控制台导入模板，并关联主机
 ## 效果图
-
+![image](https://user-images.githubusercontent.com/13861904/143971718-d390e456-e4ce-401c-b099-d6d01abd3763.png)
 
