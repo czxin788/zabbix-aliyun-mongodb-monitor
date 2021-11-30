@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2021-09-26T09:15:14Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>aliyun MongoDB</template>
+            <name>aliyun MongoDB监控模板（只在zabbix server上添加）</name>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>aliyun MongoDB COMDML</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB Cursors</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB Disk</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB IOPS</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB IO延时</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB Mem Cpu Usage</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB Network Traffic</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB QPSTPS</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB Sessions</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB WiredTiger Cache</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB WT并发请求队列</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB 主备延时</name>
+                </application>
+                <application>
+                    <name>aliyun MongoDB 等待全局锁的队列长度</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>aliyun Mongodb discovery</name>
+                    <key>aliyun.mongodb.discovery</key>
+                    <delay>120</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 平均每秒钟从内存读取的数据量</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},byres_read_into_cache,Primary]</key>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WiredTiger Cache</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 平均每秒钟从内存读取的数据量</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},byres_read_into_cache,Secondary]</key>
+                            <delay>5m</delay>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WiredTiger Cache</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary WiredTigerWiredTiger平均每秒钟写入到内存中的数据量</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},bytes_written_from_cache,Primary]</key>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WiredTiger Cache</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary WiredTigerWiredTiger平均每秒钟写入到内存中的数据量</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},bytes_written_from_cache,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WiredTiger Cache</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 数据磁盘使用空间</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},data_size,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 数据磁盘使用空间</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},data_size,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 日志磁盘使用空间</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},log_size,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary日志磁盘使用空间</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},log_size,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary WiredTigerWiredTiger设置的最大内存量（Bytes）</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},maximun_bytes_configured,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WiredTiger Cache</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary WiredTigerWiredTiger设置的最大内存量</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},maximun_bytes_configured,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>Bytes</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WiredTiger Cache</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 总使用空间</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},total_used_size,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 总使用空间</name>
+                            <key>check.aliyun.mongodb[Disk,{#DBINSTANCEID},total_used_size,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒command语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},command,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary平均每秒command语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},command,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary cpu使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},cpuusage,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Mem Cpu Usage</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;70</expression>
+                                    <name>cpu usage than 70% on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Primary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary cpu使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},cpuusage,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Mem Cpu Usage</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;70</expression>
+                                    <name>cpu usage than 70% on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Secondary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary Cursors cursors_timed_out</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},cursors_timed_out,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Cursors</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary Cursors cursors_timed_out</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},cursors_timed_out,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Cursors</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary Cursors total_open</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},cursors_total_open,Primary]</key>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Cursors</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary Cursors total_open</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},cursors_total_open,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Cursors</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒delete语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},delete,Primary]</key>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary平均每秒delete语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},delete,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 磁盘空间使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},diskusage,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;60</expression>
+                                    <name>磁盘空间使用率 than 60%  on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Primary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 磁盘空间使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},diskusage,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Disk</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;60</expression>
+                                    <name>磁盘空间使用率 than 60%  on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Secondary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒getmore语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},getmore,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary平均每秒getmore语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},getmore,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 平均每秒Insert语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},insert,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary平均每秒Insert语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},insert,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary IOPS使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},iops_usage,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB IOPS</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary IOPS使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},iops_usage,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB IOPS</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 内存使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},memoryusage,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Mem Cpu Usage</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;70</expression>
+                                    <name>mem usage than 70% on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Primary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary内存使用率</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},memoryusage,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>%</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Mem Cpu Usage</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;70</expression>
+                                    <name>mem usage than 70% on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Secondary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary全局读锁的等待队列长度</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_global_lock_current_queue_readers,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 等待全局锁的队列长度</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 全局读锁的等待队列长度</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_global_lock_current_queue_readers,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 等待全局锁的队列长度</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 所有全局锁的等待队列长度</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_global_lock_current_queue_total,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 等待全局锁的队列长度</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 所有全局锁的等待队列长度</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_global_lock_current_queue_total,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 等待全局锁的队列长度</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 全局写锁的等待队列长度</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_global_lock_current_queue_writers,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 等待全局锁的队列长度</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 全局写锁的等待队列长度</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_global_lock_current_queue_writers,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 等待全局锁的队列长度</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary IOPS使用量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_iops,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>次/秒</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB IOPS</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary IOPS使用量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_iops,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>次/秒</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB IOPS</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒钟的输入流量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_network_in,Primary]</key>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Network Traffic</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 平均每秒钟的输入流量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_network_in,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Network Traffic</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒钟的请求量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_network_num_request,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Network Traffic</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 平均每秒钟的请求量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_network_num_request,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Network Traffic</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒钟的输出流量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_network_out,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Network Traffic</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 平均每秒钟的输出流量</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_network_out,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Network Traffic</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary WiredTiger主备延时</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_repl_lag,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 主备延时</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary WiredTiger主备延时</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},mongodb_repl_lag,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB 主备延时</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒query语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},query,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary平均每秒query语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},query,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 可用的读并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},read_concurrent_trans_available,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 可用的读并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},read_concurrent_trans_available,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 读并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},read_concurrent_trans_out,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 读并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},read_concurrent_trans_out,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary当前总连接数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},total_conn,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Sessions</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;100</expression>
+                                    <name>当前总连接数 than 100 on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Primary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 当前总连接数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},total_conn,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB Sessions</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;100</expression>
+                                    <name>当前总连接数 than 100 on RDS aliyun mongodb  {#DBINSTANCEDESCRIPTION} Secondary</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary平均每秒update语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},update,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary平均每秒update语句执行个数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},update,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB COMDML</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 可用的写并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},write_concurrent_trans_available,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 可用的写并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},write_concurrent_trans_available,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Primary 写并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},write_concurrent_trans_out,Primary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#DBINSTANCEDESCRIPTION} Secondary 写并发请求数</name>
+                            <key>check.aliyun.mongodb[Performance,{#DBINSTANCEID},write_concurrent_trans_out,Secondary]</key>
+                            <delay>5m</delay>
+                            <value_type>FLOAT</value_type>
+                            <units>个</units>
+                            <applications>
+                                <application>
+                                    <name>aliyun MongoDB WT并发请求队列</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
